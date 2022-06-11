@@ -12,6 +12,9 @@ root.render(
   </React.StrictMode>
 );
 
+//몽고db 존안강의 붙여놨음
+//mongodb+srv://shim:<password>@boilerplate.9nsez.mongodb.net/?retryWrites=true&w=majority
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
