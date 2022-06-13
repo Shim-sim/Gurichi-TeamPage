@@ -5,11 +5,10 @@ import './App.css'
 
 function App() {
 	
-	let post = '구리치 승';
 	let [matchResult, setMatchResult] = useState(['구리치 3:0', '구리치 5:1', '구리치 0:3'])
-	let [like, setLike] = useState(0)
+	let [addLike, setAddLike] = useState([0,0,0])
 	let [modal, setModal] = useState(false)
-
+	let [title, setTitle] = useState(0)
   return (
 	<>
 		<div className="App">
@@ -21,10 +20,14 @@ function App() {
 			{
 				matchResult.map((a,i)=> {
 					return (
-						<div className="list">
+						<div className="list" key={i}>
 							<h4 onClick={()=> {
 									setModal(!modal)
-								}}>{matchResult[i]} <span onClick={()=>{setLike(like+1)}}>🖐</span> {like} </h4>
+								}}>{matchResult[i]} <span onClick={()=> {
+										let copy = [...addLike]
+										copy[i] += 1
+										setAddLike(copy)
+									}}>🖐</span> {addLike[i]} </h4>
 							<p>5월 15일 경기</p>
 						</div>
 					)
@@ -32,7 +35,7 @@ function App() {
 			}
 			
 			{
-				modal == true ? <Modal  matchResult={matchResult}/> : null
+				modal == true ? <Modal  matchResult={matchResult} title={title}/> : null
 			}
 			
 		</div>
@@ -40,10 +43,10 @@ function App() {
   );
 }
 
-const Modal = () => {
+const Modal = (props) => {
 	return(
 		<div className="modal">
-			<h4>제목</h4>
+			<h4>{props.matchResult[props.title]}</h4>
 			<p>날짜</p>
 			<p>상세내용</p>
 		</div>
