@@ -13,7 +13,18 @@ function App() {
 	let [inputValue, setInputValue] = useState('')
 	let [boardTime, setBoardTime] = useState(['1월경기', '2월경기', '3월경기'])
 	
-	
+	const submit = () => {
+		if (!inputValue) return
+			let copy = [...matchResult]
+					copy.push(inputValue)
+			let addLikeCopy = [...addLike]
+					addLikeCopy.push(0)
+			let copyBoardTime = [...boardTime]
+					copyBoardTime.push(newDate)
+				setMatchResult(copy)
+				setAddLike(addLikeCopy)
+				setBoardTime(copyBoardTime)
+	}
 	
   return (
 	<>
@@ -53,17 +64,7 @@ function App() {
 			<input type="text" onChange={(e)=> {
 					setInputValue(e.target.value)
 				}}/>
-			<button onClick={()=> {
-					let copy = [...matchResult]
-					copy.push(inputValue)
-					let addLikeCopy = [...addLike]
-					addLikeCopy.push(0)
-					let copyBoardTime = [...boardTime]
-					copyBoardTime.push(newDate)
-					setMatchResult(copy)
-					setAddLike(addLikeCopy)
-					setBoardTime(copyBoardTime)
-				}}>경기결과 추가하기</button>
+			<button onClick={ submit }>경기결과 추가하기</button>
 			
 			{
 				modal == true ? <Modal setMatchResult={setMatchResult}  matchResult={matchResult} title={title}/> : null
