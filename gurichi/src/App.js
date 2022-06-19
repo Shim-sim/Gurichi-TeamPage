@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 import { useState } from 'react'
-import './App.css'
+import './App.scss'
 
 function App() {
 	const newDate = new Date().toLocaleString();
@@ -38,7 +38,7 @@ function App() {
 				matchResult.map((a,i)=> {
 					return (
 						<div className="list" key={i}>
-							<h4 onClick={()=> {
+							<h3 onClick={()=> {
 									setTitle(i)
 									setModal(!modal)
 								}}>{matchResult[i]} <span onClick={(e)=> {
@@ -46,8 +46,8 @@ function App() {
 										let copy = [...addLike]
 										copy[i] += 1
 										setAddLike(copy)
-									}}>🖐</span> {addLike[i]} </h4>
-							<h3>{ boardTime[i] }</h3>
+									}}>🖐</span> {addLike[i]} </h3>
+							<h4>{ boardTime[i] }</h4>
 							<button onClick={()=> {
 									let copy = [...matchResult]
 									copy.splice(i,1)
@@ -67,7 +67,7 @@ function App() {
 			<button onClick={ submit }>경기결과 추가하기</button>
 			
 			{
-				modal == true ? <Modal setMatchResult={setMatchResult}  matchResult={matchResult} title={title}/> : null
+				modal == true ? <Modal setMatchResult={setMatchResult} setModal={setModal} modal={modal} matchResult={matchResult} title={title}/> : null
 			}
 			
 		</div>
@@ -77,10 +77,13 @@ function App() {
 
 const Modal = (props) => {
 	return(
-		<div className="modal">
-			<h4>{props.matchResult[props.title]}</h4>
-			<p>날짜</p>
-			<p>상세내용</p>
+		<div onClick={()=>{props.setModal(!props.modal)}} className="modal">
+			<div className="modal__overlay"></div>
+				<div className="modal__content">
+					<h4>{props.matchResult[props.title]}</h4>
+					<p>날짜</p>
+					<p>상세내용</p>
+				</div>
 		</div>
 	)
 }
