@@ -7,13 +7,16 @@ function App() {
 	const newDate = new Date().toLocaleString();
 	
 	let [mode, setMode] = useState(false);
-	let [matchResult, setMatchResult] = useState(['구리치 3:0', '구리치 5:1', '구리치 0:3'])
+	let [matchResult, setMatchResult] = useState([
+		{id:1, title:'구리치 승', body:'mvp: 박광윤'},
+    {id:2, title:'구리치 무 ', body:'심성보 3골'},
+    {id:3, title:'고알레 승', body:'7:3 패배'}
+	])
 	let [addLike, setAddLike] = useState([0,0,0])
 	let [modal, setModal] = useState(false)
 	let [updateModal, setUpdateModal] = useState(false)
 	let [title, setTitle] = useState(0)
 	let [inputValue, setInputValue] = useState('')
-	let [boardTime, setBoardTime] = useState(['1월경기', '2월경기', '3월경기'])
 	
 	const addList = () => {
 		if (!inputValue) return
@@ -25,7 +28,6 @@ function App() {
 					copyBoardTime.push(newDate)
 				setMatchResult(copy)
 				setAddLike(addLikeCopy)
-				setBoardTime(copyBoardTime)
 	}
 	
 
@@ -44,13 +46,13 @@ function App() {
 							<h3 onClick={()=> {
 									setTitle(i)
 									setModal(!modal)
-								}}>{matchResult[i]} <span onClick={(e)=> {
+								}}>{matchResult[i].title} <span onClick={(e)=> {
 										e.stopPropagation()
 										let copy = [...addLike]
 										copy[i] += 1
 										setAddLike(copy)
 									}}>🖐</span> {addLike[i]} </h3>
-							<h4>{ boardTime[i] }</h4>
+							<h4>{ matchResult[i].body }</h4>
 							<div className="click__btn">
 							<button onClick={()=> {
 									let copy = [...matchResult]
@@ -92,9 +94,8 @@ const Modal = (props) => {
 		<div className="modal">
 			<div className="modal__overlay"></div>
 				<div className="modal__content">
-					<h4>{props.matchResult[props.title]}</h4>
-					<p>날짜</p>
-					<p>상세내용</p>
+					<h4>{props.matchResult[props.title].title}</h4>
+					<p>{props.matchResult[props.title].body}</p>
 					<p><button onClick={()=>{props.setModal(!props.modal)}} className="modal__close">❌</button></p>
 				</div>
 		</div>
@@ -106,8 +107,8 @@ function Update(props) {
 			<div className="update">
 			<div className="update__overlay"></div>
 				<div className="update__content">
-					<h4>{props.matchResult[props.title]}</h4>
-					<p>상세내용 추가예정</p>
+					<h4>{props.matchResult[props.title].title}</h4>
+					<p>{props.matchResult[props.title].body}</p>
 					<p><button onClick={()=>{
 								props.setUpdateModal(!props.updateModal)
 								props.setMode(!props.mode)
