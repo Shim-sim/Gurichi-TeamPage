@@ -33,7 +33,7 @@ function App() {
 		if(selectedTodo) {
 			setSelectedTodo(null)
 		}
-		setInsertToggle(prev => !prev)
+		setInsertToggle(!insertToggle)
 		
 	}
 	
