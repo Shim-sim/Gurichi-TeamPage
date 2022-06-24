@@ -26,10 +26,11 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
 			<div className='background' onClick={onInsertToggle}></div>
 			<form onSubmit={
 					selectedTodo
-						? () => {
-									onUpdate(selectedTodo.id, value)
-								}
-							: onSubmit
+						? (e) => {
+								e.preventDefault()
+								onUpdate(selectedTodo.id, value)
+							}
+						: onSubmit
 				}
 			>
 				<input
@@ -42,7 +43,7 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
 						<TiPencil onClick={()=>{onUpdate(selectedTodo.id, value)}}/>
 						<TiTrash onClick={()=>{onRemove(selectedTodo.id)}}/>
 					</div>
-				) : (<button type='submit'>
+				) : (<button type='button'>
 					<MdAddCircle />
 				</button>
 			)}

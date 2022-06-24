@@ -45,7 +45,7 @@ function App() {
 			checked: false
 		};
 		setTodos(todos => todos.concat(todo));
-		nextId++;
+		nextId++
 	}
 	
 	const onCheckToggle = id => {
