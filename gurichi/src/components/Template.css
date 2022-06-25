@@ -1,0 +1,12 @@
+.Template {
+	max-height: 100vh;
+	padding: 17px 10px;
+}
+
+.Template img {
+	max-height: 20%;
+	max-width: 30%;
+	border: 3px solid #ffe714;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
