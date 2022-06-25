@@ -3,12 +3,19 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import { MdAddCircle } from "react-icons/md"
+import { TiTrash, TiPencil } from "react-icons/ti";
 import './MatchAdd.css'
 
 
 
 //나중에 input 창을 하나 더 만들어서 경기 입력창 + 경기결과를 추가해도 될듯
-const MatchAdd = ({onAddToggle, onAddMatch, selectedMatch}) => {
+const MatchAdd = ({
+	onAddToggle,
+	onAddMatch,
+	selectedMatch,
+	onRemove,
+	onUpdate
+}) => {
 	const [value, setValue] = useState('')
 	
 	const onChange = (e) => {
@@ -26,7 +33,6 @@ const MatchAdd = ({onAddToggle, onAddMatch, selectedMatch}) => {
 	useEffect(() => {
 		if(selectedMatch) {
 			setValue(selectedMatch.text)
-			console.log('지금만 랜더링 된거임')
 		}
 	},[selectedMatch])
 
@@ -35,7 +41,14 @@ const MatchAdd = ({onAddToggle, onAddMatch, selectedMatch}) => {
 	return (
 		<div>
 		<div className="background" onClick={onAddToggle}></div>
-		<form onSubmit={onSubmit}>
+		<form onSubmit={
+				selectedMatch ? 
+					(e) => {
+					e.preventDefault()
+					onUpdate(selectedMatch.id, value)
+				}
+			: onSubmit
+		}>
 			
 			<input
 				placeholder="경기를 입력하세요"
@@ -43,9 +56,15 @@ const MatchAdd = ({onAddToggle, onAddMatch, selectedMatch}) => {
 				onChange={onChange}
 			></input>
 			
-			<button type="submit">
-				<MdAddCircle />
-			</button>
+			{selectedMatch ? (
+				<div className="rewrite">
+					<TiPencil onClick={()=>{onUpdate(selectedMatch.id, value)}}/>
+					<TiTrash onClick={()=>{onRemove(selectedMatch.id)}}/>
+				</div>) :
+			
+				(<button type="submit">
+					<MdAddCircle />
+				</button>)}
 			
 		</form>
 		</div>

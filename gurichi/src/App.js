@@ -57,6 +57,16 @@ function App() {
 		setSelectedMatch(match)
 	}
 	
+	const onRemove = id => {
+		onAddToggle()
+		setMatchs(matchs => matchs.filter(match => match.id !== id))
+	}
+	
+	const onUpdate = (id, text) => {
+		onAddToggle()
+		setMatchs(matchs => matchs.map(match => match.id === id ? {...match, text} : match))
+	}
+	
 	
 	return ( 
 	<Template matchLength={matchs.length}>
@@ -72,6 +82,8 @@ function App() {
 					onAddToggle={onAddToggle}
 					onAddMatch={onAddMatch}
 					selectedMatch={selectedMatch}
+					onRemove={onRemove}
+					onUpdate={onUpdate}
 				/>
 			)}
 		
