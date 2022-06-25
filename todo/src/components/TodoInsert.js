@@ -37,7 +37,7 @@ const TodoInsert = ({
 					selectedTodo
 						? (e) => {
 								e.preventDefault()
-								onUpdate(selectedTodo.id, value) // 제출을 하는 순간 변경이 되는거겠지??
+								onUpdate(selectedTodo.id, value) 
 							}
 						: onSubmit
 				}

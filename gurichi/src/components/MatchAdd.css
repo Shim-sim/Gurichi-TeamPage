@@ -1,0 +1,53 @@
+.background {
+  position: fixed;
+  z-index: 980;
+  top: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2a2a2a;
+  opacity: 0.8;
+}
+
+form {
+  margin-left: 10%;
+  position: fixed;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 990;
+  width: 310px;
+  height: 175px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 30px 10px #abb131;
+  background: white;
+}
+
+form > input {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #625e5e;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+form > button {
+  padding-top: 1.2rem;
+  background: none;
+  outline: none;
+  border: none;
+  color: #ffe714;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

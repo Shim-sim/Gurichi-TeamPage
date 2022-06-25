@@ -2,14 +2,17 @@
 
 import React from 'react';
 import MatchDetail from "./MatchDetail";
+import  './MatchList.css';
 
-const MatchList = ({match}) => {
+const MatchList = ({matchs, onAddToggle, onChangeSelectedMatch}) => {
 	return (
 	<div className="matchList">
-		{match.map(game => (
+		{matchs.map(game => (
 			<MatchDetail
 				game={game}
 				key={game.id}
+				onAddToggle={onAddToggle}
+				onChangeSelectedMatch={onChangeSelectedMatch}
 			/>
 		))}
 	</div>

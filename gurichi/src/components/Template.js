@@ -6,7 +6,7 @@ const Template = ( {children, matchLength} ) => {
 	<div className="Template">
 		<div className="title">
 			<img src="img/logo_transparent.png" alt="logo"/>
-			<div>올해의 경기 수: ({matchLength})</div>
+			<div>2022년 경기 수: ({matchLength})</div>
 		</div>
 		<div>{children}</div>
 	</div>
