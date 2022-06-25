@@ -34,7 +34,6 @@ function App() {
 			setSelectedTodo(null)
 		}
 		setInsertToggle(!insertToggle)
-		
 	}
 	
 	const onInsertTodo = text => {
@@ -78,7 +77,7 @@ function App() {
 				onChangeSelectedTodo={onChangeSelectedTodo}
 				/>
 			<div className="add-todo-button" onClick={onInsertToggle}><MdAddCircle /></div>
-		  {insertToggle && (
+		  {insertToggle && 
 				<TodoInsert
 					onInsertToggle={onInsertToggle}
 					onInsertTodo={onInsertTodo}
@@ -86,7 +85,7 @@ function App() {
 					onRemove={onRemove}
 					onUpdate={onUpdate}
 					/>
-				)}
+				}
 		</Template>
   );
 }

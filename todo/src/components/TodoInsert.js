@@ -3,7 +3,13 @@ import { MdAddCircle } from "react-icons/md"
 import { TiTrash, TiPencil } from "react-icons/ti";
 import './TodoInsert.css'
 
-const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUpdate }) => {
+const TodoInsert = ({
+	onInsertToggle,
+	onInsertTodo,
+	selectedTodo,
+	onRemove,
+	onUpdate
+}) => {
 	const [value, setValue] = useState('')
 	
 	const onChange = (e) => {
@@ -16,6 +22,9 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
 		onInsertToggle();
 	}
 	
+
+	
+	// TodoItem components 안에 있는 text를 클릭했을대만 useEffect가 실행 됨
 	useEffect(()=> {
 		if (selectedTodo) {
 			setValue(selectedTodo.text)
@@ -28,7 +37,7 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
 					selectedTodo
 						? (e) => {
 								e.preventDefault()
-								onUpdate(selectedTodo.id, value)
+								onUpdate(selectedTodo.id, value) // 제출을 하는 순간 변경이 되는거겠지??
 							}
 						: onSubmit
 				}
@@ -43,7 +52,7 @@ const TodoInsert = ({ onInsertToggle, onInsertTodo, selectedTodo, onRemove, onUp
 						<TiPencil onClick={()=>{onUpdate(selectedTodo.id, value)}}/>
 						<TiTrash onClick={()=>{onRemove(selectedTodo.id)}}/>
 					</div>
-				) : (<button type='button'>
+				) : (<button type='submit'>
 					<MdAddCircle />
 				</button>
 			)}
