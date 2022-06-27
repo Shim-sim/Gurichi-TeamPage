@@ -17,19 +17,19 @@ function App() {
 			id: 1,
 			text: " 마르틴스",
 			result: "7:7 무",
-			mvp: "김동민"
+			mvp: "MOM: 김동민"
 		},
 		{
 			id: 2,
 			text: " 상록FC",
 			result: "12:1 승",
-			mvp: "윤상균"
+			mvp: "MOM: 윤상균"
 		},
 		{
 			id: 3,
 			text: " 두진FC",
 			result: "9:1 승",
-			mvp: "이은종"
+			mvp: "MOM: 이은종"
 		},
 	])
 	
@@ -41,16 +41,17 @@ function App() {
 	}
 	
 	// onAddMatch 이 부분의 result랑 mvp 추가는 연구하기
-	const onAddMatch = (text) => {
+	const onAddMatch = (text, result, mvp) => {
 		if(!text) return;
 		const match = {
 			id: nextId,
 			text,
-			result: '',
-			mvp: ''
+			result,
+			mvp
 		};
 		setMatchs(matchs => matchs.concat(match));
 		nextId++
+		
 	}
 	
 	const onChangeSelectedMatch = (match) => {
@@ -62,9 +63,11 @@ function App() {
 		setMatchs(matchs => matchs.filter(match => match.id !== id))
 	}
 	
-	const onUpdate = (id, text) => {
+	const onUpdate = (id, text, result, mvp) => {
 		onAddToggle()
-		setMatchs(matchs => matchs.map(match => match.id === id ? {...match, text} : match))
+		setMatchs(matchs =>
+			matchs.map(match =>
+			 match.id === id ? {...match, text, result, mvp} : match))
 	}
 	
 	

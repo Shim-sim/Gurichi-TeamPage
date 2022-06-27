@@ -17,14 +17,25 @@ const MatchAdd = ({
 	onUpdate
 }) => {
 	const [value, setValue] = useState('')
+	const [mvpValue, setMvpValue] = useState('')
+	const [matchResult, setMatchResult] = useState('')
 	
 	const onChange = (e) => {
 		setValue(e.target.value)
 	}
 	
+	const onChangeMvp = (e) => {
+		setMvpValue(e.target.value)
+	}
+	
+	const onChangeResult = (e) => {
+		setMatchResult(e.target.value)
+	}
+	
+	
 	const onSubmit = (e) => {
 		e.preventDefault();
-		onAddMatch(value);
+		onAddMatch(value, matchResult, mvpValue);
 		setValue('');
 		onAddToggle();
 	}
@@ -33,10 +44,11 @@ const MatchAdd = ({
 	useEffect(() => {
 		if(selectedMatch) {
 			setValue(selectedMatch.text)
+			setMvpValue(selectedMatch.mvp)
+			setMatchResult(selectedMatch.result)
 		}
 	},[selectedMatch])
 
-	
 	
 	return (
 		<div>
@@ -45,7 +57,7 @@ const MatchAdd = ({
 				selectedMatch ? 
 					(e) => {
 					e.preventDefault()
-					onUpdate(selectedMatch.id, value)
+					onUpdate(selectedMatch.id, value, matchResult, mvpValue)
 				}
 			: onSubmit
 		}>
@@ -54,11 +66,21 @@ const MatchAdd = ({
 				placeholder="경기를 입력하세요"
 				value={value}
 				onChange={onChange}
-			></input>
+			/>
+			<input
+				placeholder="Mvp를 입력하세요"
+				value={mvpValue}
+				onChange={onChangeMvp}
+			/>
+			<input
+				placeholder="경기결과를 입력하세요"
+				value={matchResult}
+				onChange={onChangeResult}
+			/>
 			
 			{selectedMatch ? (
 				<div className="rewrite">
-					<TiPencil onClick={()=>{onUpdate(selectedMatch.id, value)}}/>
+					<TiPencil onClick={()=>{onUpdate(selectedMatch.id, value, matchResult, mvpValue)}}/>
 					<TiTrash onClick={()=>{onRemove(selectedMatch.id)}}/>
 				</div>) :
 			
