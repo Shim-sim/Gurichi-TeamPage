@@ -3,7 +3,7 @@
 import Header from './components/Header';
 import MatchList from './components/MatchList';
 import MatchDetail from './components/MatchDetail';
-import EmptyPage from './component/EmptyPage'
+import EmptyPage from './components/EmptyPage'
 import { Route, Routes, Link } from 'react-router-dom'
 
 function App() {

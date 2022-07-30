@@ -1,9 +1,10 @@
 /* eslint-disable */
 
-import { Card } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Link, useParams, useNavigate } from 'react-router-dom'
-import dummy from './../db/data.json'
+import Match from './Match.js'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Wrapper = styled.div`
     margin-top: 1.5rem;
@@ -13,25 +14,21 @@ const Wrapper = styled.div`
 
 const MatchDetail = () => {
 	const { id } = useParams()
-
-	const matchList = dummy.data.filter(data => data.id === Number(id))
+	const [matchlist, setMatchList] = useState([])
+ //const matchList = dummy.data.filter(data => data.id === Number(id))
+	
+	useEffect(() => {
+		axios.get(`https://gurichi-teampage-data.run.goorm.io/data?id=${id}`)
+		.then((res)=>{
+			setMatchList(res.data)
+		})
+	}, [id])
+	
 	
 	return (
 		<Wrapper>
-			{matchList.map(data => (
-			<Card className="text-center" key={data.id}>
-				<Card.Header>{data.day}</Card.Header>
-					<Card.Body>
-						<Card.Title>{data.competitor}</Card.Title>
-						<Card.Text className="result">
-							{data.result}
-						</Card.Text>
-						<p>
-							{data.scored}
-						</p>
-					</Card.Body>
-				<Card.Footer className="text-muted detail-mvp">MVP: {data.mvp}</Card.Footer>
-			</Card>
+			{matchlist.map(data => (
+				<Match data={data}  key={data.id}/>
 			))}
 		</Wrapper>
 	)

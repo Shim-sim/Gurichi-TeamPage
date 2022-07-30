@@ -14,15 +14,21 @@ const Wrapper = styled.div`
 		
 		
 		/* 색상 */
-    background: #727272;
+    background: #dfdedf;
     color: white;
-    border-bottom: 1px solid #727272;
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.20);
 
     /* 폰트 */
     font-size: 2.5rem;
 		font-family: 'Baloo', cursive
 `;
+
+const Button = styled.button`
+	position: fixed;
+	top: 3%;
+	color: red;
+	z-index: 6;
+`
 
 
 
@@ -34,9 +40,9 @@ const Header = () => (
 		<Link to="/">
 		<div className="main_img">
 			<img src="logo_transparent.png" alt="logo"/>
-			
 		</div>
 		</Link>
+		<Button>경기 추가</Button>
 	</>
 )
 
