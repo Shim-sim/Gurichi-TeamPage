@@ -23,16 +23,16 @@ const Wrapper = styled.div`
 		font-family: 'Baloo', cursive
 `;
 
-const Button = styled.button`
-	position: fixed;
-	top: 3%;
-	color: red;
-	z-index: 6;
-`
+// const Button = styled.button`
+// 	position: fixed;
+// 	top: 3%;
+// 	color: red;
+// 	z-index: 6;
+// `
 
 
 
-const Header = () => (
+const Header = ({ onSetInsertToggle }) => (
 	<>
 		<Wrapper>
 			<Link to="/">Gurichi</Link>
@@ -42,7 +42,6 @@ const Header = () => (
 			<img src="logo_transparent.png" alt="logo"/>
 		</div>
 		</Link>
-		<Button>경기 추가</Button>
 	</>
 )
 

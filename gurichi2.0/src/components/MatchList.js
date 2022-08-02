@@ -1,27 +1,26 @@
 /* eslint-disable */
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import useAxios from './../Hooks/useAxios'
 
 
 const MatchList = () => {
-	const [data, setData] = useState([])
-	
-	useEffect(() => {
-		axios.get('https://gurichi-teampage-data.run.goorm.io/data')
-		.then((res)=>{
-			setData(res.data)
-		})
-	}, [])
+	const data = useAxios('https://gurichi-teampage-data.run.goorm.io/data?_sort=day&_order=ASC')
+
 	return (
-	
-	<ul className="match_list">
-		{data.map(day => (
-			<li key={day.id}>
-				<Link to={`/detail/${day.id}`}>{day.day}</Link>
-			</li>
-		))}
-	</ul>
+	<>
+		<h2>2022년의 경기 수({data.length})</h2>
+		<ul className="match_list">
+			{data.map(day => (
+				<li key={day.id}>
+					<Link to={`/detail/${day.id}`}>{day.day}</Link>
+				</li>
+			))}
+		</ul>
+		<Link to="/create_match" className="link">
+			경기추가
+		</Link>
+	</>	
 		
 )}
 

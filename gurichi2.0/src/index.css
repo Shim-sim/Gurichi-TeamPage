@@ -51,7 +51,7 @@ a:hover {
 }
 
 .match_list li {
-		padding: 20px;
+		padding: 25px;
     background: dodgerblue;
     margin: 10px auto;
     border-radius: 15px;
@@ -60,6 +60,7 @@ a:hover {
 .match_list a {
 	font-weight: bold;
   color: #fff;
+	font-size: 1rem;
 }
 
 .detail-mvp {
@@ -72,3 +73,52 @@ a:hover {
 	color: #ff7d7d;
 }
 
+.add-match-button {
+	position: fixed;
+  right: -5px;
+  bottom: 0;
+  z-index: 100;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  font-size: 4.5rem;
+  color: #ffe714;
+}
+
+.link {
+	width: 100px;
+	height: 100px;
+	color: red;
+	background: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.input_area {
+  margin: 1rem;
+}
+
+.input_area label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input_area input {
+  width: 360px;
+  height: 50px;
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.paginate {
+	display: flex;
+	justify-content: center;
+	margin-top: 3rem;
+}
+
+.paginate svg {
+	color: dodgerblue;
+	font-size: 5rem;
+}
